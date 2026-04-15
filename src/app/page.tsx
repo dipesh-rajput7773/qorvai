@@ -3,6 +3,8 @@ import { Hero } from '@/components/Hero';
 import { Trust } from '@/components/Trust';
 import { Problem } from '@/components/Problem';
 import { Services } from '@/components/Services';
+import { Showcase } from '@/components/Showcase';
+import { InteractiveAudit } from '@/components/InteractiveAudit';
 import { Process } from '@/components/Process';
 import { Results } from '@/components/Results';
 import { CTA } from '@/components/CTA';
@@ -20,6 +22,8 @@ export default function Home() {
         <Trust />
         <Problem />
         <Services />
+        <Showcase />
+        <InteractiveAudit />
         <Process />
         <Results />
         <CTA />
