@@ -29,6 +29,29 @@ export const InteractiveAudit = () => {
     const [answers, setAnswers] = useState<Record<string, string>>({});
     const [calculating, setCalculating] = useState(false);
     const [result, setResult] = useState(false);
+    const [roiData, setRoiData] = useState({ reclaimed: '0', dollars: '0' });
+
+    const calculateROI = (finalAnswers: Record<string, string>) => {
+        let teamMul = 1;
+        if (finalAnswers['team'] === "2-5 People") teamMul = 3;
+        if (finalAnswers['team'] === "5-20 People") teamMul = 10;
+        if (finalAnswers['team'] === "20+ People") teamMul = 25;
+
+        let timeMul = 5;
+        if (finalAnswers['time'] === "10-20 hours") timeMul = 15;
+        if (finalAnswers['time'] === "20-40 hours") timeMul = 30;
+        if (finalAnswers['time'] === "40+ hours") timeMul = 50;
+
+        const hoursPerWeek = teamMul * timeMul;
+        const hoursAnnually = hoursPerWeek * 52;
+        const reclaimed = Math.floor(hoursAnnually * 0.6); // 60% time saved via automation
+        const dollars = reclaimed * 40; // $40/hr average labor cost
+
+        setRoiData({
+            reclaimed: reclaimed.toLocaleString(),
+            dollars: dollars.toLocaleString()
+        });
+    };
 
     const handleOption = (option: string) => {
         const nextAnswers = { ...answers, [steps[currentStep].id]: option };
@@ -38,6 +61,7 @@ export const InteractiveAudit = () => {
             setCurrentStep(currentStep + 1);
         } else {
             setCalculating(true);
+            calculateROI(nextAnswers);
             setTimeout(() => {
                 setCalculating(false);
                 setResult(true);
@@ -113,13 +137,13 @@ export const InteractiveAudit = () => {
                             >
                                 <div className="space-y-2">
                                     <p className="text-[0.7rem] font-bold text-[#C8714A] tracking-[0.3em] uppercase">Your Potential Impact</p>
-                                    <h3 className="font-display text-5xl md:text-6xl font-extrabold text-[#E8A882]">820 Hours</h3>
+                                    <h3 className="font-display text-5xl md:text-6xl font-extrabold text-[#E8A882]">{roiData.reclaimed} Hours</h3>
                                     <p className="text-[#8A857E] text-lg">Reclaimed annually through automation.</p>
                                 </div>
                                 
                                 <div className="bg-[#181816] border border-[#2A2925] p-6 rounded-2xl inline-block max-w-sm">
                                     <p className="text-sm text-[#F2EDE8] leading-relaxed">
-                                        "Based on your team size and volume, you're losing approximately <span className="text-[#C8714A] font-bold">$42,000/yr</span> in productive labor."
+                                        "Based on your team size and volume, you're losing approximately <span className="text-[#C8714A] font-bold">${roiData.dollars}/yr</span> in productive labor."
                                     </p>
                                 </div>
 

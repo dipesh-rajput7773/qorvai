@@ -5,18 +5,18 @@ import { ExternalLink, TrendingUp } from 'lucide-react';
 
 const projects = [
     {
-        title: "FinTech Lead Engine",
-        client: "VentureScale",
-        metric: "+240% Conv Rate",
+        title: "Gov-Portal Auto-Apply Bot",
+        client: "Visa / Immigration Agency",
+        metric: "100% Manual Data Entry Eliminated",
         image: "bg-[#181816]",
-        tags: ["AI Chatbot", "Typeform Sync"]
+        tags: ["Playwright", "Fast API"]
     },
     {
-        title: "SaaS Workflow 2.0",
-        client: "CloudOps",
-        metric: "-18h Work/Week",
+        title: "Seller Multi-Platform Sync",
+        client: "E-Commerce (Flipkart/Meesho)",
+        metric: "Fully Automated Operations",
         image: "bg-[#111110]",
-        tags: ["Zapier", "OpenAI API"]
+        tags: ["React/Node", "n8n"]
     }
 ];
 
@@ -24,7 +24,7 @@ export const Showcase = () => {
     return (
         <section className="py-32" id="showcase">
             <div className="max-w-[1200px] mx-auto px-6">
-                <div className="flex flex-col md:row justify-between items-end mb-20 gap-8">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}

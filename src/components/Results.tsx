@@ -3,9 +3,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const metrics = [
-    { val: "2x", label: "Efficiency Boost" },
-    { val: "300+", label: "Hours Saved/Month" },
-    { val: "$1M+", label: "Pipeline Generated" }
+    { val: "24/7", label: "Lead Capture & Output" },
+    { val: "100%", label: "Workflow Consistency" },
+    { val: "Zero", label: "Data Entry Errors" }
 ];
 
 export const Results = () => {

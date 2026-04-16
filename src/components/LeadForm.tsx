@@ -4,13 +4,38 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Send } from 'lucide-react';
 
 export const LeadForm = () => {
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        volume: 'Less than 100 leads /mo',
+        bottleneck: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('submitting');
-        // Simulate API call
-        setTimeout(() => setStatus('success'), 1500);
+        
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (res.ok) {
+                setStatus('success');
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error(error);
+            setStatus('error');
+        }
     };
 
     return (
@@ -31,6 +56,9 @@ export const LeadForm = () => {
                                     <input 
                                         required
                                         type="text" 
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
                                         className="w-full bg-[#080807] border border-[#2A2925] rounded-xl px-4 py-4 text-[#F2EDE8] focus:border-[#C8714A] focus:outline-none transition-all"
                                         placeholder="John Doe"
                                     />
@@ -40,6 +68,9 @@ export const LeadForm = () => {
                                     <input 
                                         required
                                         type="email" 
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         className="w-full bg-[#080807] border border-[#2A2925] rounded-xl px-4 py-4 text-[#F2EDE8] focus:border-[#C8714A] focus:outline-none transition-all"
                                         placeholder="john@company.com"
                                     />
@@ -48,7 +79,12 @@ export const LeadForm = () => {
                             
                             <div className="space-y-1">
                                 <label className="text-[0.7rem] font-bold text-[#4A4540] tracking-widest uppercase">Current Monthly Volume</label>
-                                <select className="w-full bg-[#080807] border border-[#2A2925] rounded-xl px-4 py-4 text-[#F2EDE8] focus:border-[#C8714A] focus:outline-none transition-all appearance-none cursor-pointer">
+                                <select 
+                                    name="volume"
+                                    value={formData.volume}
+                                    onChange={handleChange}
+                                    className="w-full bg-[#080807] border border-[#2A2925] rounded-xl px-4 py-4 text-[#F2EDE8] focus:border-[#C8714A] focus:outline-none transition-all appearance-none cursor-pointer"
+                                >
                                     <option>Less than 100 leads /mo</option>
                                     <option>100 - 500 leads /mo</option>
                                     <option>500 - 2,000 leads /mo</option>
@@ -59,6 +95,10 @@ export const LeadForm = () => {
                             <div className="space-y-1">
                                 <label className="text-[0.7rem] font-bold text-[#4A4540] tracking-widest uppercase">Biggest Growth Bottleneck</label>
                                 <textarea 
+                                    name="bottleneck"
+                                    required
+                                    value={formData.bottleneck}
+                                    onChange={handleChange}
                                     className="w-full bg-[#080807] border border-[#2A2925] rounded-xl px-4 py-4 text-[#F2EDE8] focus:border-[#C8714A] focus:outline-none transition-all h-32 resize-none"
                                     placeholder="e.g. Manual follow-ups are killing our conversion..."
                                 />
@@ -76,6 +116,9 @@ export const LeadForm = () => {
                                     <><Send className="w-5 h-5" /> Analyze My Business</>
                                 )}
                             </motion.button>
+                            {status === 'error' && (
+                                <p className="text-red-500 text-sm opacity-80 text-center">Something went wrong. Please try again.</p>
+                            )}
                         </form>
                     </motion.div>
                 ) : (

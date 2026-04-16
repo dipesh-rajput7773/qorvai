@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -26,15 +27,18 @@ export const Hero = () => {
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="bg-[#C8714A] text-white px-8 py-4 rounded-lg font-display font-bold text-sm tracking-wide shadow-lg shadow-[#C8714A]/20 hover:bg-[#E8A882] transition-colors"
-                        >
-                            Book a Free Strategy Call
-                        </motion.button>
+                        <Link href="#cta" className="block">
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="bg-[#C8714A] text-white px-8 py-4 rounded-lg font-display font-bold text-sm tracking-wide shadow-lg shadow-[#C8714A]/20 hover:bg-[#E8A882] transition-colors w-full h-full"
+                            >
+                                Book a Free Strategy Call
+                            </motion.button>
+                        </Link>
                         <motion.button
                             whileHover={{ borderColor: "#C8714A", color: "#F2EDE8" }}
+                            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                             className="border border-[#2A2925] text-[#8A857E] px-8 py-4 rounded-lg font-display font-bold text-sm tracking-wide flex items-center justify-center gap-2 group transition-all"
                         >
                             Explore Solutions <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

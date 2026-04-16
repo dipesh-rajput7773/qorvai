@@ -30,21 +30,20 @@ export const Footer = () => {
                         <div className="space-y-4">
                             <h5 className="font-display text-sm font-bold text-[#F2EDE8]">Connect</h5>
                             <div className="flex flex-col gap-2">
-                                {['X / Twitter', 'LinkedIn', 'YouTube', 'Email'].map(item => (
-                                    <Link key={item} href="#" className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors">
-                                        {item}
-                                    </Link>
-                                ))}
+                                <Link target="_blank" href="https://www.instagram.com/qorvai/" className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors">Instagram</Link>
+                                {/* Update this URL with your actual personal X handle */}
+                                <Link target="_blank" href="https://x.com/dipeshsingh" className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors">X / Twitter</Link>
+                                <Link target="_blank" href="https://linkedin.com/company/qorvai" className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors">LinkedIn</Link>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div className="pt-8 border-t border-[#2A2925] flex flex-col md:row justify-between items-center gap-4 text-[0.75rem] text-[#4A4540]">
-                    <p>&copy; 2026 QorvAI Automation Agency. All rights reserved.</p>
+                <div className="pt-8 border-t border-[#2A2925] flex flex-col md:flex-row justify-between items-center gap-4 text-[0.75rem] text-[#4A4540]">
+                    <p>&copy; {new Date().getFullYear()} QorvAI Automation Agency. All rights reserved.</p>
                     <div className="flex gap-8">
-                        <Link href="#" className="hover:text-[#8A857E]">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-[#8A857E]">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-[#8A857E] transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-[#8A857E] transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>

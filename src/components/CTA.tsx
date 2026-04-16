@@ -21,7 +21,7 @@ export const CTA = () => {
                             Ready to <br /><span className="font-serif-editorial italic text-[#E8A882] font-light">automate?</span>
                         </h2>
                         <p className="text-xl text-[#8A857E] max-w-md mb-12 leading-relaxed">
-                            Our systems are built for founders who value their time. We only take 5 clients per month to ensure premium delivery.
+                            Our systems are built for founders who value their time. We carefully partner with our clients to ensure premium delivery and maximum ROI.
                         </p>
                         
                         <div className="flex items-center gap-6">
@@ -30,11 +30,11 @@ export const CTA = () => {
                                     <div key={i} className={`w-12 h-12 rounded-full border-2 border-[#080807] bg-[#2A2925]`}></div>
                                 ))}
                             </div>
-                            <p className="text-sm font-bold text-[#F2EDE8]">Joined by 40+ brands</p>
+                            <p className="text-sm font-bold text-[#F2EDE8]">Trusted by modern founders</p>
                         </div>
 
                         <p className="mt-12 font-display text-[#C8714A] font-bold text-[0.85rem] tracking-widest uppercase">
-                            2 spots remaining for May
+                            Currently accepting applications
                         </p>
                     </motion.div>
 

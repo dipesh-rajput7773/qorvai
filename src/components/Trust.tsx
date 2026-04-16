@@ -2,14 +2,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const logos = ["LINEAR", "NOTION", "STRIPE", "APPLE", "VERCEL", "OPENAI"];
+const logos = ["OpenAI", "Anthropic", "n8n", "Zapier", "Next.js", "Stripe", "Make"];
 
 export const Trust = () => {
     return (
         <section className="py-20 border-y border-[#2A2925]">
             <div className="max-w-[1200px] mx-auto px-6 text-center">
                 <p className="text-[0.7rem] tracking-[0.3em] text-[#4A4540] font-bold mb-12">
-                    TRUSTED BY FOUNDERS & GROWING BRANDS
+                    INTEGRATING SEAMLESSLY WITH YOUR CURRENT STACK
                 </p>
                 
                 <div className="flex overflow-hidden group select-none">
