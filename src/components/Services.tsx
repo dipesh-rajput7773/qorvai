@@ -6,33 +6,33 @@ import { Bot, Database, Zap, Webhook, MonitorCheck, ArrowRight } from 'lucide-re
 const services = [
     {
         icon: <Bot className="w-8 h-8" />,
-        title: "Intelligent Web Bots",
-        description: "Custom Playwright automation. We build bots that seamlessly log into government portals, Visa/OCI sites, or complex web apps to auto-fill data and execute workflows. 100% hands-free.",
-        benefit: "PORTAL AUTOMATION & BROWSER QA"
+        title: "Web Scraping & Portal Bots",
+        description: "Using Playwright, we build robust bots that automate routine data entry, navigate complex government portals (Visa/OCI), and reliably scrape analytics. We save your team hundreds of manual hours every month.",
+        benefit: "FOR: VISA AGENCIES, E-COMMERCE"
     },
     {
         icon: <Database className="w-8 h-8" />,
-        title: "Document Intelligence (RAG)",
-        description: "We deploy AI systems that read messy, handwritten PDFs, extract the critical data, and sync it directly to your CRM. The ultimate time-saver for CA Firms, Law Offices & Real Estate.",
-        benefit: "INSTANT DATA EXTRACTION (OCR)"
+        title: "AI Document Extraction (RAG)",
+        description: "We deploy AI pipelines that instantly read messy, unstructured PDFs and invoices, extract critical financial or legal data, and automatically pipe it directly into your CRM or database.",
+        benefit: "FOR: CA FIRMS, REAL ESTATE, LAW"
     },
     {
         icon: <Zap className="w-8 h-8" />,
-        title: "Instagram Auto-DM Systems",
-        description: "Custom Node.js Instagram bots that turn comments into sales. Automated DM sequences, comment-to-DM funnels, and dynamic engagement pipelines tailored for E-commerce & Restaurants.",
-        benefit: "SOCIAL GROWTH & LEAD CAPTURE"
+        title: "Social Media Lead Engines",
+        description: "Custom Node.js integrations that transform Instagram engagements into autonomous sales funnels. We build intelligent comment-to-DM systems that capture and qualify leads while you sleep.",
+        benefit: "FOR: RESTAURANTS, RETAIL BRANDS"
     },
     {
         icon: <MonitorCheck className="w-8 h-8" />,
-        title: "Full-Stack Development",
-        description: "Primary MERN, React JS, Node, Sequelize, and FastAPI development. From translating Figma designs into pixel-perfect UIs to developing robust, scalable SaaS portals and dashboards.",
-        benefit: "APP & WEB ENGINEERING"
+        title: "Custom Dashboards & SaaS",
+        description: "Enterprise-grade Full-Stack Development using MERN and Next.js. We replace clunky spreadsheets with blazing-fast, secure operational dashboards customized perfectly for your business workflow.",
+        benefit: "FOR: B2B AGENCIES, STARTUPS"
     },
     {
         icon: <Webhook className="w-8 h-8" />,
-        title: "n8n Business Automation",
-        description: "Building true auto-pilot pipelines. We connect 50+ apps to sync your lead generation, CRM pipelines, and Slack notifications flawlessly with zero human touch.",
-        benefit: "END-TO-END WORKFLOWS"
+        title: "Zero-Touch Automation (n8n)",
+        description: "We seamlessly wire together your entire tech stack using n8n and custom webhooks. We fully automate client onboarding, lead assignment, and financial syncing across 50+ apps with zero human touch.",
+        benefit: "FOR: SERVICE-BASED BUSINESSES"
     }
 ];
 
