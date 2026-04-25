@@ -45,6 +45,7 @@ export default function RootLayout({
             })
           }}
         />
+        <meta name="google-site-verification" content="p93oRgGM9rXYJDkK6Pvalmw73nA9tj-XJlkoaSJQMrI" />
       </head>
       <body className={inter.className}>
         {children}
