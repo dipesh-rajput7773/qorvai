@@ -6,8 +6,8 @@ import { Bot, Database, Zap, Webhook, MonitorCheck, ArrowRight } from 'lucide-re
 const services = [
     {
         icon: <Bot className="w-8 h-8" />,
-        title: "Web Scraping & Portal Bots",
-        description: "Using Playwright, we build robust bots that automate routine data entry, navigate complex government portals (Visa/OCI), and reliably scrape analytics. We save your team hundreds of manual hours every month.",
+        title: "RPA: Automate Software Without APIs",
+        description: "No API? No problem. Using Playwright and browser automation, we build robust bots that automate data entry on legacy software, navigate complex government portals, and bridge 'un-automatable' gaps.",
         benefit: "FOR: VISA AGENCIES, E-COMMERCE"
     },
     {

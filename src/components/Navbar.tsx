@@ -28,8 +28,9 @@ export const Navbar = () => {
             }`}
         >
             <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="font-display font-extrabold text-2xl tracking-tighter relative z-50">
-                    QORV<span className="text-[#C8714A]">AI</span>
+                <Link href="/" className="flex items-center gap-3 font-display font-extrabold text-2xl tracking-tighter relative z-50">
+                    <img src="/logo.png" alt="Qorvai Logo" className="w-8 h-8 object-contain" />
+                    <span>QORV<span className="text-[#C8714A]">AI</span></span>
                 </Link>
                 
                 {/* Desktop Nav */}

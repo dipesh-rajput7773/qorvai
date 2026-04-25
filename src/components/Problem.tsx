@@ -22,8 +22,8 @@ export const Problem = () => {
                         THE BOTTLENECK
                     </p>
                     <h2 className="font-display text-4xl md:text-6xl font-extrabold leading-[1.1] mb-8 tracking-tighter">
-                        Scaling shouldn't mean <br />
-                        <span className="font-serif-editorial italic font-light text-[#E8A882]">suffering.</span>
+                        Manual work, no leads, <br />
+                        <span className="font-serif-editorial italic font-light text-[#E8A882]">slow growth.</span>
                     </h2>
                     <p className="text-lg text-[#8A857E] leading-relaxed">
                         Manual processes are silent growth killers. Most businesses fail to scale not because of a lack of customers, but because their operations are built on human effort alone.

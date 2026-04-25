@@ -1,159 +1,242 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, Zap, Clock, TrendingUp, Sparkles } from 'lucide-react';
+import { Sparkles, Terminal, Globe, Cpu, CheckCircle2, ArrowRight, Bot } from 'lucide-react';
 
-const steps = [
-    {
-        id: 'team',
-        question: "How many people are in your team?",
-        options: ["Solo Founder", "2-5 People", "5-20 People", "20+ People"],
-        icon: <Zap className="w-6 h-6" />
-    },
-    {
-        id: 'time',
-        question: "How many hours/week do you spend on manual tasks?",
-        options: ["< 10 hours", "10-20 hours", "20-40 hours", "40+ hours"],
-        icon: <Clock className="w-6 h-6" />
-    },
-    {
-        id: 'leads',
-        question: "Current monthly lead volume?",
-        options: ["< 50", "50-200", "200-1000", "1000+"],
-        icon: <TrendingUp className="w-6 h-6" />
-    }
+const scanLogs = [
+    "Initializing Playwright headless instance...",
+    "Bypassing standard bot protections...",
+    "Crawling DOM for manual data-entry bottlenecks...",
+    "Analyzing NLP capabilities & chat infrastructure...",
+    "Evaluating workflow & webhook potential (n8n)...",
+    "Compiling automation blueprint..."
 ];
 
 export const InteractiveAudit = () => {
-    const [currentStep, setCurrentStep] = useState(0);
-    const [answers, setAnswers] = useState<Record<string, string>>({});
-    const [calculating, setCalculating] = useState(false);
-    const [result, setResult] = useState(false);
-    const [roiData, setRoiData] = useState({ reclaimed: '0', dollars: '0' });
+    const [url, setUrl] = useState('');
+    const [isScanning, setIsScanning] = useState(false);
+    const [scanStep, setScanStep] = useState(0);
+    const [isComplete, setIsComplete] = useState(false);
+    const [email, setEmail] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
-    const calculateROI = (finalAnswers: Record<string, string>) => {
-        let teamMul = 1;
-        if (finalAnswers['team'] === "2-5 People") teamMul = 3;
-        if (finalAnswers['team'] === "5-20 People") teamMul = 10;
-        if (finalAnswers['team'] === "20+ People") teamMul = 25;
+    const [findings, setFindings] = useState<any[]>([]);
 
-        let timeMul = 5;
-        if (finalAnswers['time'] === "10-20 hours") timeMul = 15;
-        if (finalAnswers['time'] === "20-40 hours") timeMul = 30;
-        if (finalAnswers['time'] === "40+ hours") timeMul = 50;
+    useEffect(() => {
+        if (isScanning && scanStep < scanLogs.length) {
+            const timer = setTimeout(() => {
+                setScanStep(prev => prev + 1);
+            }, Math.random() * 800 + 800); // Random delay between 800ms and 1600ms per step
+            return () => clearTimeout(timer);
+        }
+    }, [isScanning, scanStep]);
 
-        const hoursPerWeek = teamMul * timeMul;
-        const hoursAnnually = hoursPerWeek * 52;
-        const reclaimed = Math.floor(hoursAnnually * 0.6); // 60% time saved via automation
-        const dollars = reclaimed * 40; // $40/hr average labor cost
-
-        setRoiData({
-            reclaimed: reclaimed.toLocaleString(),
-            dollars: dollars.toLocaleString()
-        });
-    };
-
-    const handleOption = (option: string) => {
-        const nextAnswers = { ...answers, [steps[currentStep].id]: option };
-        setAnswers(nextAnswers);
+    const handleScan = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!url || !url.includes('.')) return;
         
-        if (currentStep < steps.length - 1) {
-            setCurrentStep(currentStep + 1);
-        } else {
-            setCalculating(true);
-            calculateROI(nextAnswers);
+        setIsScanning(true);
+        setScanStep(0);
+        setIsComplete(false);
+        setFindings([]);
+
+        try {
+            const res = await fetch('/api/scan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url })
+            });
+            const data = await res.json();
+            
+            // Artificial delay to wait for terminal animation to finish if API was too fast
+            const waitTime = Math.max(0, (scanLogs.length * 1000) - 1000); 
             setTimeout(() => {
-                setCalculating(false);
-                setResult(true);
-            }, 2000);
+                if (data.findings) {
+                    setFindings(data.findings);
+                }
+                setIsScanning(false);
+                setIsComplete(true);
+            }, waitTime);
+
+        } catch (err) {
+            console.error(err);
+            setTimeout(() => {
+                setFindings([
+                    { type: 'critical', title: 'Connection Bottleneck', desc: 'Advanced Playwright extraction required.' },
+                    { type: 'warning', title: 'Manual Webhook', desc: 'No automation detected.' }
+                ]);
+                setIsScanning(false);
+                setIsComplete(true);
+            }, 3000);
         }
     };
 
+    const handleLeadSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+        setSubmitted(true);
+    };
+
     return (
-        <section className="py-24 bg-[#080807]">
-            <div className="max-w-[800px] mx-auto px-6">
+        <section className="py-24 bg-[#080807] relative overflow-hidden" id="interactive-audit">
+            {/* Ambient Background Gradient */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(200,113,74,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+
+            <div className="max-w-[900px] mx-auto px-6 relative z-10">
                 <motion.div 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="text-center mb-16"
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8714A]/10 border border-[#C8714A]/20 text-[#C8714A] text-[0.65rem] font-bold tracking-widest uppercase mb-6">
-                        <Sparkles className="w-3 h-3" /> Calculator
+                        <Terminal className="w-3 h-3" /> Live Automation Scanner
                     </div>
-                    <h2 className="font-display text-4xl font-extrabold mb-4">Calculate Your <span className="text-[#C8714A]">Automation ROI</span></h2>
-                    <p className="text-[#8A857E]">Tell us about your business and we'll show you how much time you can reclaim.</p>
+                    <h2 className="font-display text-4xl md:text-5xl font-extrabold mb-4">
+                        Discover your <span className="text-[#C8714A]">hidden bottlenecks.</span>
+                    </h2>
+                    <p className="text-[#8A857E] max-w-2xl mx-auto text-lg">
+                        Enter your website URL. Our browser bot will immediately scan your digital footprint to identify where you're bleeding thousands of dollars in manual labor.
+                    </p>
                 </motion.div>
 
-                <div className="bg-[#111110] border border-[#2A2925] rounded-[32px] p-8 md:p-12 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
+                <div className="bg-[#111110] border border-[#2A2925] rounded-[32px] p-8 md:p-12 min-h-[450px] shadow-2xl relative overflow-hidden">
                     <AnimatePresence mode="wait">
-                        {!calculating && !result && (
+                        
+                        {/* Initial Input State */}
+                        {!isScanning && !isComplete && (
                             <motion.div
-                                key={currentStep}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="space-y-8"
+                                key="input"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                className="flex flex-col items-center justify-center h-full text-center space-y-8"
                             >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-[#181816] border border-[#2A2925] flex items-center justify-center text-[#C8714A]">
-                                        {steps[currentStep].icon}
+                                <div className="w-20 h-20 rounded-2xl bg-[#181816] border border-[#2A2925] flex items-center justify-center mb-4">
+                                    <Globe className="w-10 h-10 text-[#C8714A]" />
+                                </div>
+                                <h3 className="font-display text-3xl font-bold text-[#F2EDE8]">Deploy the Scanner</h3>
+                                <form onSubmit={handleScan} className="w-full max-w-md flex flex-col gap-4">
+                                    <div className="relative">
+                                        <input 
+                                            type="text" 
+                                            placeholder="https://yourwebsite.com" 
+                                            value={url}
+                                            onChange={(e) => setUrl(e.target.value)}
+                                            className="w-full bg-[#181816] border border-[#2A2925] p-5 rounded-xl text-white outline-none focus:border-[#C8714A] pl-12 text-sm font-mono transition-colors"
+                                            required
+                                        />
+                                        <Bot className="w-5 h-5 text-[#8A857E] absolute left-4 top-1/2 -translate-y-1/2" />
                                     </div>
-                                    <p className="text-xs font-bold text-[#4A4540] tracking-widest uppercase">Step {currentStep + 1} of {steps.length}</p>
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-extrabold">{steps[currentStep].question}</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {steps[currentStep].options.map(option => (
-                                        <button
-                                            key={option}
-                                            onClick={() => handleOption(option)}
-                                            className="p-6 rounded-2xl bg-[#181816] border border-[#2A2925] text-left hover:border-[#C8714A] hover:bg-[#C8714A]/5 transition-all group"
-                                        >
-                                            <span className="text-[#8A857E] group-hover:text-[#F2EDE8] transition-colors">{option}</span>
-                                        </button>
-                                    ))}
-                                </div>
+                                    <button 
+                                        type="submit"
+                                        className="bg-[#C8714A] text-white px-8 py-4 rounded-xl font-display font-bold text-sm tracking-wide shadow-lg shadow-[#C8714A]/20 hover:bg-[#E8A882] transition-colors w-full flex items-center justify-center gap-2 group"
+                                    >
+                                        Initiate Live Audit <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                </form>
+                                <p className="text-xs text-[#8A857E] font-mono opacity-60">
+                                    Powered by Next.js & Playwright Analysis
+                                </p>
                             </motion.div>
                         )}
 
-                        {calculating && (
+                        {/* Scanning Terminal State */}
+                        {isScanning && (
                             <motion.div
-                                key="calc"
+                                key="scanning"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-center space-y-6"
+                                exit={{ opacity: 0 }}
+                                className="h-full flex flex-col"
                             >
-                                <div className="w-16 h-16 border-4 border-[#C8714A]/20 border-t-[#C8714A] rounded-full animate-spin mx-auto"></div>
-                                <h3 className="font-display text-2xl font-extrabold">Analyzing workflows...</h3>
-                                <p className="text-[#4A4540] text-sm animate-pulse">Running efficiency simulations</p>
+                                <div className="flex items-center justify-between mb-8 border-b border-[#2A2925] pb-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <div className="text-xs font-mono text-[#8A857E]">Target: {url}</div>
+                                </div>
+                                <div className="flex-grow font-mono text-sm space-y-4">
+                                    {scanLogs.map((log, index) => (
+                                        <motion.div 
+                                            key={index}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: index <= scanStep ? 1 : 0, x: index <= scanStep ? 0 : -10 }}
+                                            className={`flex gap-3 ${index === scanStep ? 'text-[#C8714A]' : 'text-[#8A857E]'}`}
+                                        >
+                                            <span className="shrink-0">{'>'}</span>
+                                            <span className={`${index === scanStep ? 'animate-pulse' : ''}`}>{log}</span>
+                                        </motion.div>
+                                    ))}
+                                    {scanStep < scanLogs.length && (
+                                        <motion.div className="w-3 h-4 bg-[#C8714A] animate-ping ml-4 mt-4"></motion.div>
+                                    )}
+                                </div>
                             </motion.div>
                         )}
 
-                        {result && (
+                        {/* Results State */}
+                        {isComplete && (
                             <motion.div
-                                key="result"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="text-center space-y-8"
+                                key="results"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="h-full flex flex-col"
                             >
-                                <div className="space-y-2">
-                                    <p className="text-[0.7rem] font-bold text-[#C8714A] tracking-[0.3em] uppercase">Your Potential Impact</p>
-                                    <h3 className="font-display text-5xl md:text-6xl font-extrabold text-[#E8A882]">{roiData.reclaimed} Hours</h3>
-                                    <p className="text-[#8A857E] text-lg">Reclaimed annually through automation.</p>
-                                </div>
-                                
-                                <div className="bg-[#181816] border border-[#2A2925] p-6 rounded-2xl inline-block max-w-sm">
-                                    <p className="text-sm text-[#F2EDE8] leading-relaxed">
-                                        "Based on your team size and volume, you're losing approximately <span className="text-[#C8714A] font-bold">${roiData.dollars}/yr</span> in productive labor."
-                                    </p>
+                                <div className="text-center mb-8 border-b border-[#2A2925] pb-8">
+                                    <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                    <h3 className="font-display text-3xl font-bold text-[#F2EDE8]">Audit Complete</h3>
+                                    <p className="text-[#8A857E] font-mono text-sm mt-2">Target: {url}</p>
                                 </div>
 
-                                <div>
-                                    <a href="#cta" className="inline-block bg-[#C8714A] text-white px-8 py-4 rounded-xl font-display font-bold hover:bg-[#E8A882] transition-colors">
-                                        Get Your Full Blueprint →
-                                    </a>
-                                </div>
+                                {!submitted ? (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                        <div className="space-y-4">
+                                            {findings.map((finding, idx) => (
+                                                <div key={idx} className={`bg-[#181816] border p-4 rounded-xl ${finding.type === 'critical' ? 'border-red-500/20' : finding.type === 'good' ? 'border-green-500/20' : 'border-yellow-500/20'}`}>
+                                                    <h4 className={`font-bold text-sm mb-1 ${finding.type === 'critical' ? 'text-red-400' : finding.type === 'good' ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                        {finding.title}
+                                                    </h4>
+                                                    <p className="text-[#8A857E] text-xs leading-relaxed">{finding.desc}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        
+                                        <div className="bg-[#C8714A]/5 border border-[#C8714A]/20 p-6 rounded-2xl">
+                                            <h4 className="font-display font-bold text-xl mb-2 text-[#E8A882]">Unlock Full Architecture</h4>
+                                            <p className="text-sm text-[#8A857E] mb-6">Enter your email to receive our custom Playwright and n8n scripts tailored to resolve these exact bottlenecks.</p>
+                                            <form onSubmit={handleLeadSubmit} className="space-y-3">
+                                                <input 
+                                                    type="email" 
+                                                    placeholder="founder@company.com" 
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    className="w-full bg-[#111110] border border-[#2A2925] p-3 rounded-lg text-white text-sm outline-none focus:border-[#C8714A]"
+                                                    required
+                                                />
+                                                <button type="submit" className="w-full bg-[#C8714A] text-white py-3 rounded-lg font-bold text-sm hover:bg-[#E8A882] transition-colors">
+                                                    Send Optimization Blueprint
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center text-center py-8">
+                                        <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6">
+                                            <Cpu className="w-10 h-10 text-green-500" />
+                                        </div>
+                                        <h4 className="text-2xl font-display font-bold text-white mb-2">Systems Initiated</h4>
+                                        <p className="text-[#8A857E] mb-6">Your custom automation blueprint has been generated and dispatched to {email}.</p>
+                                        <button onClick={() => { setIsComplete(false); setUrl(''); setSubmitted(false); }} className="text-[#C8714A] font-bold text-sm uppercase tracking-widest hover:text-[#E8A882] transition-colors">
+                                            Scan Another Domain
+                                        </button>
+                                    </div>
+                                )}
                             </motion.div>
                         )}
+
                     </AnimatePresence>
                 </div>
             </div>

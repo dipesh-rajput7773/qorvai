@@ -5,16 +5,16 @@ import { ExternalLink, TrendingUp } from 'lucide-react';
 
 const projects = [
     {
-        title: "Gov-Portal Auto-Apply Bot",
+        title: "Gov-Portal Zero-Touch Automation",
         client: "Visa / Immigration Agency",
-        metric: "100% Manual Data Entry Eliminated",
+        metric: "$40k/yr Saved In Labor",
         image: "bg-[#181816]",
         tags: ["Playwright", "Fast API"]
     },
     {
         title: "Seller Multi-Platform Sync",
         client: "E-Commerce (Flipkart/Meesho)",
-        metric: "Fully Automated Operations",
+        metric: "80 Hrs/Week Reclaimed",
         image: "bg-[#111110]",
         tags: ["React/Node", "n8n"]
     }

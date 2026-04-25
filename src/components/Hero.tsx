@@ -23,17 +23,17 @@ export const Hero = () => {
                         <span className="font-serif-editorial italic font-light text-[#E8A882]">Scale Without Hiring.</span>
                     </h1>
                     <p className="text-xl text-[#8A857E] max-w-xl mb-12 leading-relaxed">
-                        We engineer custom AI systems that eliminate manual work, capture missing leads, and drive exponential growth.
+                        Custom AI agents, web scrapers & automation for Visa agencies, CA firms, E-commerce brands and Real Estate teams.
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4 mb-10">
                         <Link href="#cta" className="block">
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 className="bg-[#C8714A] text-white px-8 py-4 rounded-lg font-display font-bold text-sm tracking-wide shadow-lg shadow-[#C8714A]/20 hover:bg-[#E8A882] transition-colors w-full h-full"
                             >
-                                Book a Free Strategy Call
+                                Currently accepting 3 new clients — Book Free Audit →
                             </motion.button>
                         </Link>
                         <motion.button
@@ -43,6 +43,18 @@ export const Hero = () => {
                         >
                             Explore Solutions <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </motion.button>
+                    </div>
+
+                    <div className="pt-6 border-t border-[#2A2925] flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[#8A857E] font-medium">
+                        <span className="text-[#C8714A]">50+ Automations Delivered</span>
+                        <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
+                        <span>Visa Portals</span>
+                        <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
+                        <span>Flipkart/Meesho</span>
+                        <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
+                        <span>CA Firms</span>
+                        <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
+                        <span>Real Estate</span>
                     </div>
                 </motion.div>
 

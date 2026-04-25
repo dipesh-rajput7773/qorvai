@@ -3,10 +3,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const steps = [
-    { n: "01", title: "Audit", desc: "We map your current workflows and identify the biggest time sinks and revenue gaps." },
-    { n: "02", title: "Strategy", desc: "A custom blueprint for your AI ecosystem, focused on ROI and seamless integration." },
-    { n: "03", title: "Build", desc: "Our engineers deploy your custom systems. Fast, secure, and production-ready." },
-    { n: "04", title: "Scale", desc: "Ongoing optimization and support as your business reaches new heights." }
+    { n: "01", title: "Discovery", time: "30 Min", desc: "A free audit to map workflows and identify your biggest automation opportunities and ROI bottlenecks." },
+    { n: "02", title: "Blueprint", time: "1 Week", desc: "We design a custom architecture and process flow for your internal tools, fully specked out." },
+    { n: "03", title: "Build & Deploy", time: "2-4 Weeks", desc: "Our engineers build, test, and deploy the AI agents into your live production environment." }
 ];
 
 export const Process = () => {
@@ -27,7 +26,7 @@ export const Process = () => {
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {steps.map((step, i) => (
                         <motion.div
                             key={i}
@@ -41,9 +40,12 @@ export const Process = () => {
                                 {step.n}
                             </span>
                             <div className="bg-[#181816] border border-[#2A2925] p-8 rounded-2xl relative z-10 h-full group-hover:border-[#C8714A] transition-all">
-                                <h4 className="font-display text-xl font-bold mb-4 text-[#F2EDE8]">
-                                    {step.title}
-                                </h4>
+                                <div className="flex justify-between items-center mb-4">
+                                    <h4 className="font-display text-xl font-bold text-[#F2EDE8]">
+                                        {step.title}
+                                    </h4>
+                                    <span className="text-xs font-bold text-[#C8714A] bg-[#C8714A]/10 px-3 py-1 rounded-full">{step.time}</span>
+                                </div>
                                 <p className="text-[#8A857E] text-sm leading-relaxed">
                                     {step.desc}
                                 </p>
