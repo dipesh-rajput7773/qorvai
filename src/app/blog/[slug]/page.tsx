@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { blogPosts, getBlogPost, getAllSlugs } from "@/lib/blogData";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -12,7 +12,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = getBlogPost(slug);
   if (!post) return {};
 
   return {
@@ -253,8 +254,9 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Full-Stack Development": "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
 };
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getBlogPost(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
   if (!post) notFound();
 
   const related = blogPosts
