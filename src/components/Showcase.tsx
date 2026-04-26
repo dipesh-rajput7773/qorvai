@@ -7,7 +7,7 @@ import Link from "next/link";
 const projects = [
   {
     title: "Gov-Portal Zero-Touch Automation",
-    client: "Visa / Immigration Agency",
+    client: "Legal & Logistics Agency",
     metric: "$40k/yr Saved In Labor",
     image: "bg-[#181816]",
     tags: ["Playwright", "Fast API"],
@@ -15,7 +15,7 @@ const projects = [
   },
   {
     title: "Seller Multi-Platform Sync",
-    client: "E-Commerce (Flipkart/Meesho)",
+    client: "E-Commerce Enterprise",
     metric: "80 Hrs/Week Reclaimed",
     image: "bg-[#111110]",
     tags: ["React/Node", "n8n"],
@@ -23,7 +23,7 @@ const projects = [
   },
   {
     title: "AI Invoice Extraction Pipeline",
-    client: "CA & Finance Firm",
+    client: "Finance Firm",
     metric: "800+ Invoices/Day Processed",
     image: "bg-[#181816]",
     tags: ["Claude API", "TallyPrime"],
@@ -31,7 +31,7 @@ const projects = [
   },
   {
     title: "Instagram DM Lead Engine",
-    client: "Restaurant & Food Chain",
+    client: "Restaurant & Retail Chain",
     metric: "+67% Booking Conversion",
     image: "bg-[#111110]",
     tags: ["Meta API", "n8n"],

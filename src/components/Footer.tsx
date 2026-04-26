@@ -108,28 +108,28 @@ export const Footer = () => {
               </h5>
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/industries/visa-immigration-agencies"
+                  href="#services"
                   className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors"
                 >
-                  Visa Agencies
-                </Link>
-                <Link
-                  href="/industries/ecommerce-flipkart-meesho"
-                  className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors"
-                >
-                  Flipkart / Meesho
+                  Enterprise Operations
                 </Link>
                 <Link
                   href="#services"
                   className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors"
                 >
-                  CA Firms
+                  SaaS & Startups
                 </Link>
                 <Link
                   href="#services"
                   className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors"
                 >
-                  Dubai Real Estate
+                  E-Commerce Brands
+                </Link>
+                <Link
+                  href="#services"
+                  className="text-[#4A4540] text-sm hover:text-[#C8714A] transition-colors"
+                >
+                  Professional Services
                 </Link>
               </div>
             </div>

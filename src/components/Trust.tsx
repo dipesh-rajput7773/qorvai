@@ -13,14 +13,12 @@ const logos = [
 ];
 
 const industries = [
-  { icon: "🛂", label: "Visa & Immigration" },
-  { icon: "📊", label: "CA & Finance Firms" },
-  { icon: "🛒", label: "Flipkart / Meesho" },
-  { icon: "🏢", label: "Dubai Real Estate" },
-  { icon: "🍽️", label: "Restaurants & Food" },
-  { icon: "⚖️", label: "Law Firms" },
-  { icon: "🚀", label: "SaaS & Startups" },
+  { icon: "🛠️", label: "Trades & Services" },
   { icon: "📦", label: "E-Commerce Brands" },
+  { icon: "💼", label: "Professional Services" },
+  { icon: "🚀", label: "SaaS & Startups" },
+  { icon: "🤝", label: "Agencies & Consultants" },
+  { icon: "🏢", label: "Enterprise Operations" },
 ];
 
 export const Trust = () => {

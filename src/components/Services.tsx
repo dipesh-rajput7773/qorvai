@@ -8,19 +8,19 @@ const services = [
         icon: <Bot className="w-8 h-8" />,
         title: "RPA: Automate Software Without APIs",
         description: "No API? No problem. Using Playwright and browser automation, we build robust bots that automate data entry on legacy software, navigate complex government portals, and bridge 'un-automatable' gaps.",
-        benefit: "FOR: VISA AGENCIES, E-COMMERCE"
+        benefit: "FOR: OPERATIONS, E-COMMERCE"
     },
     {
         icon: <Database className="w-8 h-8" />,
         title: "AI Document Extraction (RAG)",
         description: "We deploy AI pipelines that instantly read messy, unstructured PDFs and invoices, extract critical financial or legal data, and automatically pipe it directly into your CRM or database.",
-        benefit: "FOR: CA FIRMS, REAL ESTATE, LAW"
+        benefit: "FOR: FINANCE FIRMS, LEGAL, ENTERPRISE"
     },
     {
         icon: <Zap className="w-8 h-8" />,
         title: "Social Media Lead Engines",
         description: "Custom Node.js integrations that transform Instagram engagements into autonomous sales funnels. We build intelligent comment-to-DM systems that capture and qualify leads while you sleep.",
-        benefit: "FOR: RESTAURANTS, RETAIL BRANDS"
+        benefit: "FOR: RETAIL BRANDS, AGENCIES"
     },
     {
         icon: <MonitorCheck className="w-8 h-8" />,
@@ -53,7 +53,7 @@ export const Services = () => {
                         High-value friction. <br/>Solved autonomously.
                     </h2>
                     <p className="mt-6 text-[#8A857E] font-mono text-sm leading-relaxed max-w-lg">
-                        We target businesses bleeding money from manual tasks. Visa agencies, Dubai Real Estate, CA firms, E-com brands, and Local Restaurants—we replace entire operations teams with intelligent code.
+                        We target businesses bleeding money from manual tasks. Fast-growing enterprises, E-commerce brands, SaaS startups, and Professional Services—we replace entire operations teams with intelligent code.
                     </p>
                 </motion.div>
 

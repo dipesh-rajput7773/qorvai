@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "What exactly does Qorvai build?",
     answer:
-      'We build custom AI systems: Playwright bots that automate government portals (Visa/OCI), AI document extraction pipelines for CA firms, Instagram-to-DM lead engines for restaurants, n8n workflow automations for e-commerce sellers, and full-stack dashboards. Everything is custom-coded for your exact business — no templates.',
+      'We build custom AI systems: Playwright bots that automate complex portals, AI document extraction pipelines for finance firms, Instagram-to-DM lead engines for retail chains, n8n workflow automations for e-commerce, and full-stack dashboards. Everything is custom-coded for your exact business — no templates.',
   },
   {
     question: "How long does a project take?",
@@ -15,14 +15,14 @@ const faqs = [
       "Most automations are live in 1–3 weeks. A full-stack dashboard or complex multi-platform system takes 3–5 weeks. We start with a free 30-minute audit, scope the project in 3–5 days, then build.",
   },
   {
-    question: "Do you work with businesses outside India?",
+    question: "Do you build solutions globally?",
     answer:
-      "Yes. We actively work with clients in Dubai, USA, UK, and Australia. Our India-based niches (Visa/OCI portals, Flipkart/Meesho, CA firms) are unique — no other agency specializes here.",
+      "Yes. We actively work with clients in the USA, UK, Australia, and the Middle East. Our custom agents are designed to scale globally, ensuring reliable infrastructure no matter where your operations sit.",
   },
   {
     question: "What's your pricing?",
     answer:
-      "Projects start at ₹25,000 for simple automations (single workflow, single platform). Complex systems (multi-platform scraping, full RAG pipelines, dashboards) range from ₹75,000–₹2,50,000. We scope exact costs after the free audit call.",
+      "Projects start at $299 for simple automations (single workflow, single platform). Complex systems (multi-platform scraping, full RAG pipelines, dashboards) range from $899+. We scope exact costs after the free audit call so there are zero surprises.",
   },
   {
     question: "Will the automation break if the website changes?",
@@ -30,7 +30,7 @@ const faqs = [
       "We build with resilience in mind — error handling, retry logic, and alerts when something breaks. We also offer ongoing maintenance plans so your systems keep running without you worrying about it.",
   },
   {
-    question: "Is web scraping legal in India?",
+    question: "Is web scraping compliant?",
     answer:
       "We adhere strictly to data privacy laws and terms of service. We focus on public data extraction and authorized API integrations ensuring 100% compliance and zero ban-risk for your accounts.",
   },
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "How do you compare to hiring a developer or traditional agency?",
     answer:
-      "We don't just write code; we understand business ROI. A developer needs exact specs. We look at your bottleneck (e.g. Visa data entry) and architect an autonomous agent that directly reduces your operating costs, faster and cheaper than an employee.",
+      "We don't just write code; we understand business ROI. A developer needs exact specs. We look at your operational bottlenecks and architect an autonomous agent that directly reduces your operating costs, faster and cheaper than a full-time hire.",
   },
 ];
 
