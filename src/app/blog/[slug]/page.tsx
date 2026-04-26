@@ -7,9 +7,16 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Use ISR instead of full static generation to avoid OOM during build
-// Pages are generated on first request and cached for 1 hour
+// pages are statically generated at build time and cached for 1 hr
 export const revalidate = 3600;
+export const dynamicParams = true;
+
+import { getAllSlugs } from "@/lib/blogData";
+
+export async function generateStaticParams() {
+  const slugs = getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
