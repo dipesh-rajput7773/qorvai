@@ -6,7 +6,7 @@ import { Solution } from '@/components/Solution';
 import { Services } from '@/components/Services';
 import { Showcase } from '@/components/Showcase';
 import { Testimonials } from '@/components/Testimonials';
-import { InteractiveAudit } from '@/components/InteractiveAudit';
+import { ROICalculator } from '@/components/ROICalculator';
 import { Process } from '@/components/Process';
 import { Pricing } from '@/components/Pricing';
 import { Results } from '@/components/Results';
@@ -29,7 +29,7 @@ export default function Home() {
         <Services />
         <Showcase />
         <Testimonials />
-        <InteractiveAudit />
+        <ROICalculator />
         <Process />
         <Pricing />
         <Results />
