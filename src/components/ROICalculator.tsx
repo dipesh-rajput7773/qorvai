@@ -6,6 +6,7 @@ import {
   TrendingUp,
   Clock,
   IndianRupee,
+  DollarSign,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
@@ -13,44 +14,57 @@ import {
 const industries = [
   {
     label: "Visa / Immigration Agency",
-    hourlyRate: 300,
+    hourlyRateINR: 300,
+    hourlyRateUSD: 15,
     defaultHours: 40,
     defaultTasks: 500,
   },
   {
     label: "CA / Finance Firm",
-    hourlyRate: 400,
+    hourlyRateINR: 400,
+    hourlyRateUSD: 25,
     defaultHours: 35,
     defaultTasks: 800,
   },
   {
     label: "E-Commerce (Flipkart/Meesho)",
-    hourlyRate: 250,
+    hourlyRateINR: 250,
+    hourlyRateUSD: 12,
     defaultHours: 30,
     defaultTasks: 200,
   },
   {
     label: "Restaurant / Food Chain",
-    hourlyRate: 200,
+    hourlyRateINR: 200,
+    hourlyRateUSD: 10,
     defaultHours: 20,
     defaultTasks: 150,
   },
   {
     label: "Real Estate Agency",
-    hourlyRate: 350,
+    hourlyRateINR: 350,
+    hourlyRateUSD: 20,
     defaultHours: 25,
     defaultTasks: 100,
   },
   {
     label: "SaaS / Tech Startup",
-    hourlyRate: 500,
+    hourlyRateINR: 500,
+    hourlyRateUSD: 35,
     defaultHours: 30,
     defaultTasks: 300,
   },
-  { label: "Other", hourlyRate: 300, defaultHours: 25, defaultTasks: 200 },
+  {
+    label: "Other",
+    hourlyRateINR: 300,
+    hourlyRateUSD: 15,
+    defaultHours: 25,
+    defaultTasks: 200,
+  },
 ];
 
 export const ROICalculator = () => {
+  const [currency, setCurrency] = useState<"USD" | "INR">("USD");
   const [industry, setIndustry] = useState(0);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
   const [staffCount, setStaffCount] = useState(2);
@@ -61,7 +75,10 @@ export const ROICalculator = () => {
   const selectedIndustry = industries[industry];
 
   // Calculations
-  const hourlyRate = selectedIndustry.hourlyRate;
+  const hourlyRate =
+    currency === "INR"
+      ? selectedIndustry.hourlyRateINR
+      : selectedIndustry.hourlyRateUSD;
   const weeklyManualCost = hoursPerWeek * staffCount * hourlyRate;
   const monthlyManualCost = weeklyManualCost * 4;
   const yearlyManualCost = monthlyManualCost * 12;
@@ -75,12 +92,10 @@ export const ROICalculator = () => {
   const yearlySavings = Math.round(yearlyManualCost * automationEfficiency);
   const hoursSavedPerWeek = Math.round(hoursPerWeek * automationEfficiency);
 
-  // ROI multiplier (assuming ₹75K average project cost)
-  const avgProjectCost = 75000;
+  // ROI multiplier (assuming ₹75K / $899 average project cost)
+  const avgProjectCost = currency === "INR" ? 75000 : 899;
   const roiMultiplier = Math.round((yearlySavings / avgProjectCost) * 10) / 10;
-  const paybackDays = Math.round(
-    avgProjectCost / (monthlySavings / 30)
-  );
+  const paybackDays = Math.round(avgProjectCost / (monthlySavings / 30));
 
   const handleCalculate = () => {
     setShowResults(true);
@@ -98,7 +113,11 @@ export const ROICalculator = () => {
           name: `ROI Calculator Lead — ${selectedIndustry.label}`,
           email,
           volume: `${hoursPerWeek}hrs/week, ${staffCount} staff`,
-          bottleneck: `Projected savings: ₹${yearlySavings.toLocaleString("en-IN")}/year, ROI: ${roiMultiplier}x`,
+          bottleneck: `Projected savings: ${
+            currency === "INR" ? "₹" : "$"
+          }${yearlySavings.toLocaleString(
+            "en-IN"
+          )}/year, ROI: ${roiMultiplier}x`,
         }),
       });
     } catch (err) {
@@ -107,14 +126,23 @@ export const ROICalculator = () => {
     setSubmitted(true);
   };
 
-  const formatINR = (n: number) => {
-    if (n >= 100000) return `₹${(n / 100000).toFixed(1)}L`;
-    if (n >= 1000) return `₹${(n / 1000).toFixed(0)}K`;
-    return `₹${n.toLocaleString("en-IN")}`;
+  const formatCurrency = (n: number) => {
+    if (currency === "INR") {
+      if (n >= 100000) return `₹${(n / 100000).toFixed(1)}L`;
+      if (n >= 1000) return `₹${(n / 1000).toFixed(0)}K`;
+      return `₹${n.toLocaleString("en-IN")}`;
+    } else {
+      if (n >= 1000000) return `$${(n / 1000000).toFixed(1)}M`;
+      if (n >= 1000) return `$${(n / 1000).toFixed(0)}K`;
+      return `$${n.toLocaleString("en-US")}`;
+    }
   };
 
   return (
-    <section className="py-24 bg-[#080807] relative overflow-hidden" id="roi-calculator">
+    <section
+      className="py-24 bg-[#080807] relative overflow-hidden"
+      id="roi-calculator"
+    >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(200,113,74,0.05)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-[1000px] mx-auto px-6 relative z-10">
@@ -131,10 +159,34 @@ export const ROICalculator = () => {
             How much is manual work{" "}
             <span className="text-[#C8714A]">costing you?</span>
           </h2>
-          <p className="text-[#8A857E] max-w-2xl mx-auto text-lg">
+          <p className="text-[#8A857E] max-w-2xl mx-auto text-lg mb-8">
             Calculate your exact savings from AI automation in 30 seconds. No
             email required.
           </p>
+
+          {/* Currency Toggle */}
+          <div className="inline-flex items-center p-1 bg-[#111110] border border-[#2A2925] rounded-xl">
+            <button
+              onClick={() => setCurrency("USD")}
+              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
+                currency === "USD"
+                  ? "bg-[#33312C] text-[#F2EDE8]"
+                  : "text-[#8A857E] hover:text-[#F2EDE8]"
+              }`}
+            >
+              USD ($)
+            </button>
+            <button
+              onClick={() => setCurrency("INR")}
+              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
+                currency === "INR"
+                  ? "bg-[#33312C] text-[#F2EDE8]"
+                  : "text-[#8A857E] hover:text-[#F2EDE8]"
+              }`}
+            >
+              INR (₹)
+            </button>
+          </div>
         </motion.div>
 
         <div className="bg-[#111110] border border-[#2A2925] rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
@@ -192,7 +244,11 @@ export const ROICalculator = () => {
                       }
                       className="w-full appearance-none h-2 bg-[#2A2925] rounded-full outline-none cursor-pointer accent-[#C8714A]"
                       style={{
-                        background: `linear-gradient(to right, #C8714A 0%, #C8714A ${((hoursPerWeek - 5) / 75) * 100}%, #2A2925 ${((hoursPerWeek - 5) / 75) * 100}%, #2A2925 100%)`,
+                        background: `linear-gradient(to right, #C8714A 0%, #C8714A ${
+                          ((hoursPerWeek - 5) / 75) * 100
+                        }%, #2A2925 ${
+                          ((hoursPerWeek - 5) / 75) * 100
+                        }%, #2A2925 100%)`,
                       }}
                     />
                     <div className="flex justify-between text-[0.65rem] text-[#4A4540] mt-1">
@@ -216,12 +272,14 @@ export const ROICalculator = () => {
                       min="1"
                       max="10"
                       value={staffCount}
-                      onChange={(e) =>
-                        setStaffCount(parseInt(e.target.value))
-                      }
+                      onChange={(e) => setStaffCount(parseInt(e.target.value))}
                       className="w-full appearance-none h-2 bg-[#2A2925] rounded-full outline-none cursor-pointer accent-[#C8714A]"
                       style={{
-                        background: `linear-gradient(to right, #C8714A 0%, #C8714A ${((staffCount - 1) / 9) * 100}%, #2A2925 ${((staffCount - 1) / 9) * 100}%, #2A2925 100%)`,
+                        background: `linear-gradient(to right, #C8714A 0%, #C8714A ${
+                          ((staffCount - 1) / 9) * 100
+                        }%, #2A2925 ${
+                          ((staffCount - 1) / 9) * 100
+                        }%, #2A2925 100%)`,
                       }}
                     />
                     <div className="flex justify-between text-[0.65rem] text-[#4A4540] mt-1">
@@ -238,7 +296,7 @@ export const ROICalculator = () => {
                     <div className="grid grid-cols-3 gap-4 text-center">
                       <div>
                         <div className="font-display text-xl md:text-2xl font-extrabold text-[#F2EDE8]">
-                          {formatINR(weeklyManualCost)}
+                          {formatCurrency(weeklyManualCost)}
                         </div>
                         <div className="text-[0.65rem] text-[#4A4540] mt-1">
                           Weekly Cost
@@ -246,7 +304,7 @@ export const ROICalculator = () => {
                       </div>
                       <div>
                         <div className="font-display text-xl md:text-2xl font-extrabold text-[#E8A882]">
-                          {formatINR(monthlyManualCost)}
+                          {formatCurrency(monthlyManualCost)}
                         </div>
                         <div className="text-[0.65rem] text-[#4A4540] mt-1">
                           Monthly Cost
@@ -254,7 +312,7 @@ export const ROICalculator = () => {
                       </div>
                       <div>
                         <div className="font-display text-xl md:text-2xl font-extrabold text-[#C8714A]">
-                          {formatINR(yearlyManualCost)}
+                          {formatCurrency(yearlyManualCost)}
                         </div>
                         <div className="text-[0.65rem] text-[#4A4540] mt-1">
                           Yearly Cost
@@ -294,9 +352,13 @@ export const ROICalculator = () => {
                 {/* Big Numbers */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                   <div className="bg-[#181816] border border-[#2A2925] rounded-2xl p-5 text-center">
-                    <IndianRupee className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
+                    {currency === "INR" ? (
+                      <IndianRupee className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
+                    ) : (
+                      <DollarSign className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
+                    )}
                     <div className="font-display text-2xl md:text-3xl font-extrabold text-[#E8A882]">
-                      {formatINR(yearlySavings)}
+                      {formatCurrency(yearlySavings)}
                     </div>
                     <div className="text-[0.65rem] text-[#4A4540] mt-1 uppercase tracking-wider font-bold">
                       Yearly Savings
@@ -338,15 +400,9 @@ export const ROICalculator = () => {
                       ❌ Without Automation
                     </div>
                     <div className="space-y-2 text-sm text-[#8A857E]">
-                      <div>
-                        {hoursPerWeek} hrs/week manual work
-                      </div>
-                      <div>
-                        {staffCount} staff on repetitive tasks
-                      </div>
-                      <div>
-                        {formatINR(monthlyManualCost)}/month labor cost
-                      </div>
+                      <div>{hoursPerWeek} hrs/week manual work</div>
+                      <div>{staffCount} staff on repetitive tasks</div>
+                      <div>{formatCurrency(monthlyManualCost)}/month labor cost</div>
                     </div>
                   </div>
                   <div className="bg-green-500/5 border border-green-500/20 rounded-2xl p-5">
@@ -358,9 +414,7 @@ export const ROICalculator = () => {
                         {hoursAfterAutomation} hrs/week (monitoring only)
                       </div>
                       <div>Staff freed for revenue work</div>
-                      <div>
-                        {formatINR(monthlySavings)}/month saved
-                      </div>
+                      <div>{formatCurrency(monthlySavings)}/month saved</div>
                     </div>
                   </div>
                 </div>
