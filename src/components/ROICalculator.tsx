@@ -12,46 +12,40 @@ import {
 
 const industries = [
   {
-    label: "Visa / Immigration Agency",
-    hourlyRateUSD: 15,
+    label: "Trades & Services",
+    hourlyRateUSD: 25,
     defaultHours: 40,
     defaultTasks: 500,
   },
   {
-    label: "CA / Finance Firm",
-    hourlyRateUSD: 25,
-    defaultHours: 35,
-    defaultTasks: 800,
-  },
-  {
-    label: "E-Commerce (Flipkart/Meesho)",
-    hourlyRateUSD: 12,
-    defaultHours: 30,
-    defaultTasks: 200,
-  },
-  {
-    label: "Restaurant / Food Chain",
-    hourlyRateUSD: 10,
-    defaultHours: 20,
-    defaultTasks: 150,
-  },
-  {
-    label: "Real Estate Agency",
+    label: "E-Commerce",
     hourlyRateUSD: 20,
-    defaultHours: 25,
-    defaultTasks: 100,
+    defaultHours: 30,
+    defaultTasks: 600,
   },
   {
-    label: "SaaS / Tech Startup",
-    hourlyRateUSD: 35,
-    defaultHours: 30,
+    label: "Professional Services",
+    hourlyRateUSD: 40,
+    defaultHours: 35,
     defaultTasks: 300,
   },
   {
-    label: "Other",
-    hourlyRateUSD: 15,
+    label: "SaaS & Startups",
+    hourlyRateUSD: 50,
     defaultHours: 25,
     defaultTasks: 200,
+  },
+  {
+    label: "Agencies",
+    hourlyRateUSD: 35,
+    defaultHours: 30,
+    defaultTasks: 400,
+  },
+  {
+    label: "Other Enterprise",
+    hourlyRateUSD: 30,
+    defaultHours: 40,
+    defaultTasks: 800,
   },
 ];
 

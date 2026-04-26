@@ -3,95 +3,116 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plane, Calculator, ShoppingCart, Building2, Check, X, ArrowRight } from "lucide-react";
 
-// Lucide icon components mapped to industries
 const industries = [
   {
-    id: "visa",
-    name: "Visa Agencies",
-    icon: Plane,
-    headline: "Stop manually filling hundreds of portal forms.",
-    subtitle: "We connect your WhatsApp leads, CRM, and government portals into one hands-free workflow.",
+    id: "trades",
+    name: "Trades & Services",
+    icon: Building2,
+    headline: "Stop running jobs out of group chats.",
+    subtitle: "We connect your quoting, scheduling, invoicing, and accounting into one flow that runs without you touching it.",
     before: [
-      "Manual data entry (15 mins per application)",
-      "Chasing clients for missing passport PDFs",
-      "Login timeouts and portal crashes",
-      "Zero visibility on application status"
+      "Jobs coordinated over WhatsApp",
+      "Manual data entry into accounting software",
+      "Chasing clients for payment",
+      "No visibility on active job status"
     ],
     after: [
-      "Playwright bot auto-fills portal forms",
-      "AI Whatsapp bot collects missing docs",
-      "Headless scraping bypasses IP blocks",
-      "Live status dashboard for agents"
+      "Auto-dispatch & live scheduling",
+      "Invoices sent on job completion",
+      "Automated payment follow-up",
+      "Real-time job tracking dashboards"
     ],
-    metric: "100%",
-    metricDesc: "elimination of manual typing",
-    tools: ["Playwright", "n8n", "WhatsApp API"]
-  },
-  {
-    id: "ca",
-    name: "CA Firms",
-    icon: Calculator,
-    headline: "Stop sorting through messy physical invoices.",
-    subtitle: "We build AI agents that extract GST data and sync it straight to your accounting software.",
-    before: [
-      "Sorting WhatsApp image invoices",
-      "Manual GST data entry into Tally/Xero",
-      "Client follow-ups for missing bills",
-      "High human error rate in late nights"
-    ],
-    after: [
-      "AI vision auto-reads blurry invoices",
-      "Direct API sync to Tally/Xero/Zoho",
-      "Auto-reminders sent to clients via WhatsApp",
-      "Instant discrepancy flagging"
-    ],
-    metric: "40 hrs",
-    metricDesc: "saved per week during tax season",
-    tools: ["OpenAI Vision", "Make.com", "Tally API"]
+    metric: "40%",
+    metricDesc: "less admin time",
+    tools: ["ServiceM8", "Xero", "Procore"]
   },
   {
     id: "ecom",
     name: "E-Commerce",
     icon: ShoppingCart,
-    headline: "Stop reconciling Flipkart & Meesho returns manually.",
-    subtitle: "We unify your fragmented marketplaces into a single, automated profit tracking engine.",
+    headline: "Stop reconciling orders manually.",
+    subtitle: "We unify your fragmented storefronts into a single, automated fulfillment and support engine.",
     before: [
-      "Downloading CSVs from 5 different portals",
-      "Manually matching returns to deductions",
-      "No real-time profit tracking",
-      "Delayed customer support replies"
+      "Manual order fulfillment processing",
+      "Updating inventory across 3 channels",
+      "Delayed customer support replies",
+      "Manual tracking number updates"
     ],
     after: [
-      "Automated CSV fetching & DB merging",
-      "Anomaly detection for fake returns",
-      "Real-time profit dashboard",
-      "AI Instagram/WhatsApp support agent"
+      "Automated syncing of inventory",
+      "Instant AI customer support replies",
+      "Real-time profit & loss tracking",
+      "Automated shipping label generation"
     ],
-    metric: "15%",
-    metricDesc: "recovered revenue from fake returns",
-    tools: ["Python Scripts", "Supabase", "ChatGPT"]
+    metric: "60%",
+    metricDesc: "faster order processing",
+    tools: ["Shopify API", "Make.com", "Zendesk"]
   },
   {
-    id: "realestate",
-    name: "Dubai Brokers",
-    icon: Building2,
-    headline: "Stop scraping PropertyFinder by hand.",
-    subtitle: "We build custom scrapers to pull fresh property listings before your competitors see them.",
+    id: "professional",
+    name: "Professional Services",
+    icon: Calculator,
+    headline: "Stop chasing clients for documents.",
+    subtitle: "We build systems that automate client onboarding, document retrieval, and billing.",
     before: [
-      "Refreshing property portals daily",
-      "Manual copy-pasting to Google Sheets",
-      "Slow response to new buyer inquiries",
-      "Outdated listings shared with clients"
+      "Endless email chains for missing PDFs",
+      "Manual data entry into CRMs",
+      "Copy-pasting reports",
+      "Tracking billable hours manually"
     ],
     after: [
-      "Automated hourly scraping of new listings",
-      "Instant WhatsApp alerts for hot properties",
-      "AI auto-qualifies leads 24/7",
-      "Automated PDF brochure generation"
+      "Automated client onboarding portals",
+      "Direct document extraction parsing",
+      "Auto-generated weekly reports",
+      "Seamless invoice generation"
     ],
-    metric: "5x",
-    metricDesc: "faster lead response time",
-    tools: ["Puppeteer", "n8n", "WhatsApp Cloud"]
+    metric: "20 hrs",
+    metricDesc: "saved per week on onboarding",
+    tools: ["HubSpot", "Zapier", "Stripe"]
+  },
+  {
+    id: "saas",
+    name: "SaaS & Startups",
+    icon: Plane,
+    headline: "Stop handling churn manually.",
+    subtitle: "We connect product analytics with customer success tools to drive automated retention.",
+    before: [
+      "Finding churn signals via spreadsheets",
+      "Manual check-in emails",
+      "Disconnect between Dev and CS teams",
+      "Reactive support tickets"
+    ],
+    after: [
+      "Automated win-back email sequences",
+      "Real-time Slack alerts for CS",
+      "Predictive churn AI flagging",
+      "Automated product usage sync"
+    ],
+    metric: "2x",
+    metricDesc: "improvement in retention",
+    tools: ["Segment", "n8n", "Slack"]
+  },
+  {
+    id: "agencies",
+    name: "Agencies",
+    icon: Building2,
+    headline: "Stop losing margins to over-servicing.",
+    subtitle: "We automate your reporting and SLA tracking so your account managers can focus on strategy.",
+    before: [
+      "Compiling monthly reports by hand",
+      "Tracking campaign ROAS in sheets",
+      "Manual task delegation",
+      "Forgetting to follow-up on leads"
+    ],
+    after: [
+      "Live automated ROAS dashboards",
+      "Auto-assignment of Jira/Trello tasks",
+      "Instant lead notification & routing",
+      "Automated client performance summaries"
+    ],
+    metric: "15 hrs",
+    metricDesc: "saved per account manager/month",
+    tools: ["Looker Studio", "Make.com", "Asana"]
   }
 ];
 
