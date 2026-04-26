@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { blogPosts, getBlogPost, getAllSlugs } from "@/lib/blogData";
+import { getAllPostsMeta, getBlogPost } from "@/lib/blogData";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
-}
+// Use ISR instead of full static generation to avoid OOM during build
+// Pages are generated on first request and cached for 1 hour
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -259,7 +259,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getBlogPost(slug);
   if (!post) notFound();
 
-  const related = blogPosts
+  const related = getAllPostsMeta()
     .filter((p) => p.slug !== post.slug && p.category === post.category)
     .slice(0, 2);
 
