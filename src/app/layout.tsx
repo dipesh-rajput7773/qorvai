@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
-import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,12 +28,21 @@ export const metadata: Metadata = {
     url: "https://qorvai.com",
     siteName: "Qorvai",
     type: "website",
+    images: [
+      {
+        url: "https://qorvai.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Qorvai Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Qorvai | AI Automation Agency India",
     description:
       "Custom AI agents & automation for Indian businesses. Free audit.",
+    images: ["https://qorvai.com/logo.png"],
   },
 };
 
@@ -88,7 +96,6 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         {children}
-        <WhatsAppFloat />
         <CookieConsent />
       </body>
     </html>

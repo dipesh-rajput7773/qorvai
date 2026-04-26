@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
     workerThreads: false,
     cpus: 1,
   },
+  outputFileTracingIncludes: {
+    '/blog/[slug]': ['./content/blog/**/*.md'],
+    // Trace it for the related posts listing as well
+    '/blog': ['./content/blog/**/*.md'],
+  },
 };
 
 export default nextConfig;
