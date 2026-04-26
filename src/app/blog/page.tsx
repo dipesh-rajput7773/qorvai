@@ -46,49 +46,34 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="max-w-5xl mx-auto px-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="max-w-[1200px] mx-auto px-6 pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
           {sorted.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block bg-[#111111] border border-[#1f1f1f] rounded-2xl p-6 hover:border-[#333] transition-all duration-200 hover:-translate-y-0.5"
+              className="group block"
             >
               {/* Category + Read Time */}
-              <div className="flex items-center justify-between mb-4">
-                <span
-                  className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                    CATEGORY_COLORS[post.category] ??
-                    "bg-neutral-800 text-neutral-300"
-                  }`}
-                >
-                  {post.category}
-                </span>
-                <span className="text-xs text-neutral-500">{post.readTime}</span>
+              <div className="text-[0.65rem] font-bold tracking-widest text-[#8A857E] uppercase mb-4 flex items-center gap-2">
+                 <span className="text-[#C8714A]">{post.category}</span>
+                 <span className="w-1 h-1 rounded-full bg-[#4A4540]"></span>
+                 <span>{post.readTime}</span>
               </div>
 
               {/* Title */}
-              <h2 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors leading-snug">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F2EDE8] mb-3 group-hover:text-[#E8A882] transition-colors leading-[1.2]">
                 {post.title}
               </h2>
 
               {/* Description */}
-              <p className="text-sm text-neutral-400 leading-relaxed mb-4 line-clamp-3">
+              <p className="text-[#8A857E] leading-relaxed mb-6 line-clamp-3">
                 {post.description}
               </p>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-neutral-600">
-                  {new Date(post.date).toLocaleDateString("en-IN", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </span>
-                <span className="text-xs font-medium text-blue-500 group-hover:text-blue-400">
-                  Read →
-                </span>
+              {/* Read article link */}
+              <div className="text-sm font-bold text-[#F2EDE8] underline decoration-[#4A4540] group-hover:decoration-[#C8714A] underline-offset-4 transition-all">
+                Read article
               </div>
             </Link>
           ))}
