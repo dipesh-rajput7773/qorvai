@@ -11,7 +11,7 @@ const projects = [
     metric: "$40k/yr Saved In Labor",
     image: "bg-[#181816]",
     tags: ["Playwright", "Fast API"],
-    blogSlug: "automate-visa-portal-data-entry-playwright",
+    blogSlug: "",
   },
   {
     title: "Seller Multi-Platform Sync",
@@ -19,7 +19,7 @@ const projects = [
     metric: "80 Hrs/Week Reclaimed",
     image: "bg-[#111110]",
     tags: ["React/Node", "n8n"],
-    blogSlug: "flipkart-meesho-seller-automation-sync-orders",
+    blogSlug: "",
   },
   {
     title: "AI Invoice Extraction Pipeline",
@@ -27,7 +27,7 @@ const projects = [
     metric: "800+ Invoices/Day Processed",
     image: "bg-[#181816]",
     tags: ["Claude API", "TallyPrime"],
-    blogSlug: "ai-document-extraction-ca-firms-gst-invoice-automation",
+    blogSlug: "",
   },
   {
     title: "Instagram DM Lead Engine",
@@ -35,7 +35,7 @@ const projects = [
     metric: "+67% Booking Conversion",
     image: "bg-[#111110]",
     tags: ["Meta API", "n8n"],
-    blogSlug: "instagram-dm-automation-restaurants-lead-generation",
+    blogSlug: "",
   },
 ];
 
@@ -80,7 +80,7 @@ export const Showcase = () => {
               transition={{ delay: i * 0.15 }}
               className="group"
             >
-              <Link href={`/blog/${p.blogSlug}`} className="block cursor-pointer">
+              <Link href={p.blogSlug ? `/blog/${p.blogSlug}` : '/blog'} className="block cursor-pointer">
                 <div
                   className={`aspect-[4/3] rounded-[32px] ${p.image} border border-[#2A2925] mb-8 relative overflow-hidden transition-all group-hover:border-[#C8714A]/40`}
                 >

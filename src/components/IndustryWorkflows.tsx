@@ -24,7 +24,7 @@ const industries = [
     ],
     metric: "40%",
     metricDesc: "less admin time",
-    tools: ["ServiceM8", "Xero", "Procore"]
+    tools: ["n8n", "WhatsApp API", "FastAPI"]
   },
   {
     id: "ecom",
@@ -46,7 +46,7 @@ const industries = [
     ],
     metric: "60%",
     metricDesc: "faster order processing",
-    tools: ["Shopify API", "Make.com", "Zendesk"]
+    tools: ["Node.js", "n8n", "OpenAI"]
   },
   {
     id: "professional",
@@ -68,7 +68,7 @@ const industries = [
     ],
     metric: "20 hrs",
     metricDesc: "saved per week on onboarding",
-    tools: ["HubSpot", "Zapier", "Stripe"]
+    tools: ["Claude Vision", "Supabase", "React"]
   },
   {
     id: "saas",
@@ -90,7 +90,7 @@ const industries = [
     ],
     metric: "2x",
     metricDesc: "improvement in retention",
-    tools: ["Segment", "n8n", "Slack"]
+    tools: ["Python", "Playwright", "n8n"]
   },
   {
     id: "agencies",
@@ -112,7 +112,7 @@ const industries = [
     ],
     metric: "15 hrs",
     metricDesc: "saved per account manager/month",
-    tools: ["Looker Studio", "Make.com", "Asana"]
+    tools: ["n8n", "Make.com", "Puppeteer"]
   }
 ];
 
