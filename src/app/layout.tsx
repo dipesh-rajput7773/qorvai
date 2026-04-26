@@ -2,19 +2,39 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Automation Agency India | Qorvai — Scale Without Hiring",
-  description: "Qorvai builds custom AI agents, web scrapers & n8n automations for Visa agencies, CA firms & e-com brands in India. Free strategy call.",
-  keywords: ["qorvai", "Qorvai", "ai automation agency india", "web scraping services india", "n8n workflow automation india", "custom ai agents india", "ai chatbot development", "business process automation"],
+  title: "Qorvai | AI Automation Agency India — Visa, CA Firms, E-Commerce",
+  description:
+    "Qorvai builds custom AI agents, web scrapers & n8n automations for Visa agencies, CA firms, Flipkart/Meesho sellers & Dubai Real Estate. 50+ automations delivered. Free audit call.",
+  keywords: [
+    "AI automation agency India",
+    "web scraping services India",
+    "visa portal automation",
+    "n8n automation India",
+    "AI agent development India",
+    "flipkart seller automation",
+    "ca firm automation india",
+    "dubai real estate scraping",
+    "qorvai",
+    "Qorvai",
+  ],
   openGraph: {
-    title: "AI Automation Agency India | Qorvai — Scale Without Hiring",
-    description: "Qorvai builds custom AI agents, web scrapers & n8n automations for Visa agencies, CA firms & e-com brands in India. Free strategy call.",
+    title: "Qorvai | AI Automation Agency India",
+    description:
+      "Custom AI agents, web scrapers & automation for Visa agencies, CA firms & E-commerce brands. Free 30-min audit.",
     url: "https://qorvai.com",
     siteName: "Qorvai",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Qorvai | AI Automation Agency India",
+    description:
+      "Custom AI agents & automation for Indian businesses. Free audit.",
   },
 };
 
@@ -32,23 +52,43 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Qorvai",
-              "url": "https://qorvai.com",
-              "description": "AI automation agency building custom agents, web scrapers and workflows for Indian businesses",
-              "foundingLocation": "India",
-              "sameAs": [
+              name: "Qorvai",
+              url: "https://qorvai.com",
+              logo: "https://qorvai.com/logo.png",
+              description:
+                "AI automation agency building custom agents, web scrapers and workflows for Indian businesses",
+              foundingDate: "2025",
+              foundingLocation: "India",
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "business@qorvai.com",
+                contactType: "sales",
+                availableLanguage: ["English", "Hindi"],
+              },
+              sameAs: [
                 "https://linkedin.com/company/qorvai",
                 "https://instagram.com/qorvai",
-                "https://x.com/dipeshsingh"
+                "https://x.com/dipeshsingh",
               ],
-              "serviceType": ["AI Automation", "Web Scraping", "n8n Workflows", "Full-Stack Development"]
-            })
+              serviceType: [
+                "AI Automation",
+                "Web Scraping",
+                "n8n Workflows",
+                "Full-Stack Development",
+                "Visa Portal Automation",
+                "E-Commerce Automation",
+              ],
+            }),
           }}
         />
-        <meta name="google-site-verification" content="p93oRgGM9rXYJDkK6Pvalmw73nA9tj-XJlkoaSJQMrI" />
+        <meta
+          name="google-site-verification"
+          content="p93oRgGM9rXYJDkK6Pvalmw73nA9tj-XJlkoaSJQMrI"
+        />
       </head>
       <body className={inter.className}>
         {children}
+        <WhatsAppFloat />
         <CookieConsent />
       </body>
     </html>

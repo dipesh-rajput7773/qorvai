@@ -23,7 +23,7 @@ export const Hero = () => {
                         <span className="font-serif-editorial italic font-light text-[#E8A882]">Scale Without Hiring.</span>
                     </h1>
                     <p className="text-xl text-[#8A857E] max-w-xl mb-12 leading-relaxed">
-                        Custom AI agents, web scrapers & automation for Visa agencies, CA firms, E-commerce brands and Real Estate teams.
+                        We build custom AI agents, web scrapers &amp; n8n automations for Visa agencies, CA firms, Flipkart/Meesho sellers, and Dubai Real Estate teams — eliminating manual work entirely.
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-4 mb-10">

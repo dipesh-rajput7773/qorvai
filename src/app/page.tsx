@@ -5,6 +5,7 @@ import { Problem } from '@/components/Problem';
 import { Solution } from '@/components/Solution';
 import { Services } from '@/components/Services';
 import { Showcase } from '@/components/Showcase';
+import { Testimonials } from '@/components/Testimonials';
 import { InteractiveAudit } from '@/components/InteractiveAudit';
 import { Process } from '@/components/Process';
 import { Pricing } from '@/components/Pricing';
@@ -27,6 +28,7 @@ export default function Home() {
         <Solution />
         <Services />
         <Showcase />
+        <Testimonials />
         <InteractiveAudit />
         <Process />
         <Pricing />
