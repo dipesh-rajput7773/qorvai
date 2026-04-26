@@ -59,15 +59,13 @@ const tiers = [
 ];
 
 export const Pricing = () => {
-  const [currency, setCurrency] = useState<"INR" | "USD">("USD");
-
   return (
     <section
       className="py-32 bg-[#080807] border-y border-[#2A2925]"
       id="pricing"
     >
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <p className="font-display text-[0.75rem] tracking-[0.2em] text-[#C8714A] font-bold mb-6">
             TRANSPARENT PRICING
           </p>
@@ -78,30 +76,10 @@ export const Pricing = () => {
             </span>{" "}
             Pricing.
           </h2>
-          <p className="text-[#8A857E] max-w-xl mx-auto mb-8">
+          <p className="text-[#8A857E] max-w-xl mx-auto mb-8 text-lg">
             Every project starts with a free 30-min audit. Exact cost scoped to
             your workflow. No hidden fees.
           </p>
-          
-          {/* Currency Toggle */}
-          <div className="inline-flex items-center p-1 bg-[#181816] border border-[#2A2925] rounded-xl relative z-10">
-            <button
-              onClick={() => setCurrency("USD")}
-              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                currency === "USD" ? "bg-[#33312C] text-[#F2EDE8]" : "text-[#8A857E] hover:text-[#F2EDE8]"
-              }`}
-            >
-              USD ($)
-            </button>
-            <button
-              onClick={() => setCurrency("INR")}
-              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                currency === "INR" ? "bg-[#33312C] text-[#F2EDE8]" : "text-[#8A857E] hover:text-[#F2EDE8]"
-              }`}
-            >
-              INR (₹)
-            </button>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -126,8 +104,8 @@ export const Pricing = () => {
               <h3 className="font-display text-2xl font-bold text-[#F2EDE8] mb-2">
                 {tier.name}
               </h3>
-              <p className="text-3xl font-display font-extrabold text-[#E8A882] mb-1">
-                {currency === "INR" ? tier.priceINR : tier.priceUSD}
+              <p className="text-4xl font-display font-extrabold text-[#E8A882] mb-1">
+                {tier.priceUSD}
               </p>
               <p className="text-sm text-[#8A857E] mb-1">{tier.desc}</p>
               <p className="text-xs font-mono text-[#4A4540] mb-8">

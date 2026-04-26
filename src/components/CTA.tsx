@@ -66,7 +66,7 @@ export const CTA = () => {
                   <h4 className="font-bold text-[#F2EDE8]">Our Guarantee</h4>
                 </div>
                 <p className="text-sm text-[#8A857E] leading-relaxed">
-                  If we can&apos;t identify at least <strong className="text-[#F2EDE8]">$10,000/year</strong> (or ₹10L/year) in recoverable time and cost, we&apos;ll tell you honestly and refer you elsewhere. Zero pressure.
+                  If we can&apos;t identify at least <strong className="text-[#F2EDE8]">$10,000/year</strong> in recoverable time and cost, we&apos;ll tell you honestly and refer you elsewhere. Zero pressure.
                 </p>
               </div>
 

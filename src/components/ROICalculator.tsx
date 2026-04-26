@@ -5,7 +5,6 @@ import {
   Calculator,
   TrendingUp,
   Clock,
-  IndianRupee,
   DollarSign,
   ArrowRight,
   CheckCircle2,
@@ -14,49 +13,42 @@ import {
 const industries = [
   {
     label: "Visa / Immigration Agency",
-    hourlyRateINR: 300,
     hourlyRateUSD: 15,
     defaultHours: 40,
     defaultTasks: 500,
   },
   {
     label: "CA / Finance Firm",
-    hourlyRateINR: 400,
     hourlyRateUSD: 25,
     defaultHours: 35,
     defaultTasks: 800,
   },
   {
     label: "E-Commerce (Flipkart/Meesho)",
-    hourlyRateINR: 250,
     hourlyRateUSD: 12,
     defaultHours: 30,
     defaultTasks: 200,
   },
   {
     label: "Restaurant / Food Chain",
-    hourlyRateINR: 200,
     hourlyRateUSD: 10,
     defaultHours: 20,
     defaultTasks: 150,
   },
   {
     label: "Real Estate Agency",
-    hourlyRateINR: 350,
     hourlyRateUSD: 20,
     defaultHours: 25,
     defaultTasks: 100,
   },
   {
     label: "SaaS / Tech Startup",
-    hourlyRateINR: 500,
     hourlyRateUSD: 35,
     defaultHours: 30,
     defaultTasks: 300,
   },
   {
     label: "Other",
-    hourlyRateINR: 300,
     hourlyRateUSD: 15,
     defaultHours: 25,
     defaultTasks: 200,
@@ -64,7 +56,6 @@ const industries = [
 ];
 
 export const ROICalculator = () => {
-  const [currency, setCurrency] = useState<"USD" | "INR">("USD");
   const [industry, setIndustry] = useState(0);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
   const [staffCount, setStaffCount] = useState(2);
@@ -75,10 +66,7 @@ export const ROICalculator = () => {
   const selectedIndustry = industries[industry];
 
   // Calculations
-  const hourlyRate =
-    currency === "INR"
-      ? selectedIndustry.hourlyRateINR
-      : selectedIndustry.hourlyRateUSD;
+  const hourlyRate = selectedIndustry.hourlyRateUSD;
   const weeklyManualCost = hoursPerWeek * staffCount * hourlyRate;
   const monthlyManualCost = weeklyManualCost * 4;
   const yearlyManualCost = monthlyManualCost * 12;
@@ -92,8 +80,8 @@ export const ROICalculator = () => {
   const yearlySavings = Math.round(yearlyManualCost * automationEfficiency);
   const hoursSavedPerWeek = Math.round(hoursPerWeek * automationEfficiency);
 
-  // ROI multiplier (assuming ₹75K / $899 average project cost)
-  const avgProjectCost = currency === "INR" ? 75000 : 899;
+  // ROI multiplier (assuming $899 average project cost)
+  const avgProjectCost = 899;
   const roiMultiplier = Math.round((yearlySavings / avgProjectCost) * 10) / 10;
   const paybackDays = Math.round(avgProjectCost / (monthlySavings / 30));
 
@@ -113,10 +101,8 @@ export const ROICalculator = () => {
           name: `ROI Calculator Lead — ${selectedIndustry.label}`,
           email,
           volume: `${hoursPerWeek}hrs/week, ${staffCount} staff`,
-          bottleneck: `Projected savings: ${
-            currency === "INR" ? "₹" : "$"
-          }${yearlySavings.toLocaleString(
-            "en-IN"
+          bottleneck: `Projected savings: $${yearlySavings.toLocaleString(
+            "en-US"
           )}/year, ROI: ${roiMultiplier}x`,
         }),
       });
@@ -127,15 +113,9 @@ export const ROICalculator = () => {
   };
 
   const formatCurrency = (n: number) => {
-    if (currency === "INR") {
-      if (n >= 100000) return `₹${(n / 100000).toFixed(1)}L`;
-      if (n >= 1000) return `₹${(n / 1000).toFixed(0)}K`;
-      return `₹${n.toLocaleString("en-IN")}`;
-    } else {
-      if (n >= 1000000) return `$${(n / 1000000).toFixed(1)}M`;
-      if (n >= 1000) return `$${(n / 1000).toFixed(0)}K`;
-      return `$${n.toLocaleString("en-US")}`;
-    }
+    if (n >= 1000000) return `$${(n / 1000000).toFixed(1)}M`;
+    if (n >= 1000) return `$${(n / 1000).toFixed(0)}K`;
+    return `$${n.toLocaleString("en-US")}`;
   };
 
   return (
@@ -163,30 +143,6 @@ export const ROICalculator = () => {
             Calculate your exact savings from AI automation in 30 seconds. No
             email required.
           </p>
-
-          {/* Currency Toggle */}
-          <div className="inline-flex items-center p-1 bg-[#111110] border border-[#2A2925] rounded-xl">
-            <button
-              onClick={() => setCurrency("USD")}
-              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                currency === "USD"
-                  ? "bg-[#33312C] text-[#F2EDE8]"
-                  : "text-[#8A857E] hover:text-[#F2EDE8]"
-              }`}
-            >
-              USD ($)
-            </button>
-            <button
-              onClick={() => setCurrency("INR")}
-              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                currency === "INR"
-                  ? "bg-[#33312C] text-[#F2EDE8]"
-                  : "text-[#8A857E] hover:text-[#F2EDE8]"
-              }`}
-            >
-              INR (₹)
-            </button>
-          </div>
         </motion.div>
 
         <div className="bg-[#111110] border border-[#2A2925] rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
@@ -352,11 +308,7 @@ export const ROICalculator = () => {
                 {/* Big Numbers */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                   <div className="bg-[#181816] border border-[#2A2925] rounded-2xl p-5 text-center">
-                    {currency === "INR" ? (
-                      <IndianRupee className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
-                    ) : (
-                      <DollarSign className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
-                    )}
+                    <DollarSign className="w-5 h-5 text-[#C8714A] mx-auto mb-2" />
                     <div className="font-display text-2xl md:text-3xl font-extrabold text-[#E8A882]">
                       {formatCurrency(yearlySavings)}
                     </div>
