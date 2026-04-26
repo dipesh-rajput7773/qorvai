@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { Trust } from '@/components/Trust';
-import { Problem } from '@/components/Problem';
+import { IndustryWorkflows } from '@/components/IndustryWorkflows';
 import { Solution } from '@/components/Solution';
 import { Services } from '@/components/Services';
 import { Showcase } from '@/components/Showcase';
@@ -24,7 +24,7 @@ export default function Home() {
       <div className="relative z-10">
         <Hero />
         <Trust />
-        <Problem />
+        <IndustryWorkflows />
         <Solution />
         <Services />
         <Showcase />
