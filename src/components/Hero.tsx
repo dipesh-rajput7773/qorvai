@@ -23,7 +23,7 @@ export const Hero = () => {
                         <span className="font-serif-editorial italic font-light text-[#E8A882]">Scale Without Hiring.</span>
                     </h1>
                     <p className="text-xl text-[#8A857E] max-w-xl mb-12 leading-relaxed">
-                        We build custom AI agents, web scrapers &amp; n8n automations for Visa agencies, CA firms, Flipkart/Meesho sellers, and Dubai Real Estate teams — eliminating manual work entirely.
+                        We build custom AI agents, operations workflows &amp; intelligent web scrapers for global SMBs, agencies, and SaaS teams — eliminating your manual work entirely.
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -48,13 +48,13 @@ export const Hero = () => {
                     <div className="pt-6 border-t border-[#2A2925] flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[#8A857E] font-medium">
                         <span className="text-[#C8714A]">50+ Automations Delivered</span>
                         <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
-                        <span>Visa Portals</span>
+                        <span>Trade &amp; Service</span>
                         <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
-                        <span>Flipkart/Meesho</span>
+                        <span>E-Commerce</span>
                         <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
-                        <span>CA Firms</span>
+                        <span>SaaS</span>
                         <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#8A857E]/30"></span>
-                        <span>Real Estate</span>
+                        <span>Agencies</span>
                     </div>
                 </motion.div>
 

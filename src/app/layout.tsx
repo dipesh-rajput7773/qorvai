@@ -6,25 +6,24 @@ import { CookieConsent } from "@/components/CookieConsent";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Qorvai | AI Automation Agency India — Visa, CA Firms, E-Commerce",
+  title: "Qorvai | Premium AI Automation & Workflow Agency",
   description:
-    "Qorvai builds custom AI agents, web scrapers & n8n automations for Visa agencies, CA firms, Flipkart/Meesho sellers & Dubai Real Estate. 50+ automations delivered. Free audit call.",
+    "Qorvai builds custom AI agents, web scrapers & workflow automations for scaling businesses. 50+ automations delivered. Claim your free operations audit.",
   keywords: [
-    "AI automation agency India",
-    "web scraping services India",
-    "visa portal automation",
-    "n8n automation India",
-    "AI agent development India",
-    "flipkart seller automation",
-    "ca firm automation india",
-    "dubai real estate scraping",
-    "qorvai",
+    "AI automation agency",
+    "web scraping services",
+    "workflow automation",
+    "n8n automation",
+    "AI agent development",
+    "custom software development",
+    "business operations automation",
     "Qorvai",
+    "qorvai",
   ],
   openGraph: {
-    title: "Qorvai | AI Automation Agency India",
+    title: "Qorvai | Premium AI Automation Agency",
     description:
-      "Custom AI agents, web scrapers & automation for Visa agencies, CA firms & E-commerce brands. Free 30-min audit.",
+      "Custom AI agents, web scrapers & automated workflows for modern businesses. Claim your free 30-min audit.",
     url: "https://qorvai.com",
     siteName: "Qorvai",
     type: "website",
@@ -39,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qorvai | AI Automation Agency India",
+    title: "Qorvai | Premium AI Automation Agency",
     description:
-      "Custom AI agents & automation for Indian businesses. Free audit.",
+      "Custom AI agents & operations automation for scaling businesses. Free audit.",
     images: ["https://qorvai.com/logo.png"],
   },
 };
@@ -64,14 +63,13 @@ export default function RootLayout({
               url: "https://qorvai.com",
               logo: "https://qorvai.com/logo.png",
               description:
-                "AI automation agency building custom agents, web scrapers and workflows for Indian businesses",
+                "Premium AI automation agency building custom agents, web scrapers and operational workflows for scaling businesses worldwide.",
               foundingDate: "2025",
-              foundingLocation: "India",
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "business@qorvai.com",
                 contactType: "sales",
-                availableLanguage: ["English", "Hindi"],
+                availableLanguage: ["English"],
               },
               sameAs: [
                 "https://linkedin.com/company/qorvai",
@@ -81,10 +79,10 @@ export default function RootLayout({
               serviceType: [
                 "AI Automation",
                 "Web Scraping",
-                "n8n Workflows",
+                "Operational Workflows",
                 "Full-Stack Development",
-                "Visa Portal Automation",
-                "E-Commerce Automation",
+                "Custom AI Agents",
+                "Business Process Automation",
               ],
             }),
           }}
