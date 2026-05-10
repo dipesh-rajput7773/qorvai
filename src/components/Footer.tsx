@@ -18,7 +18,7 @@ export const Footer = () => {
                 className="w-8 h-8 object-contain"
               />
               <span>
-                QORV<span className="text-[#C8714A]">AI</span>
+                QORV<span className="text-[#C8714A]">AI 1</span>
               </span>
             </Link>
             <p className="text-[#8A857E] max-w-xs leading-relaxed mb-6">
